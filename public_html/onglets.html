@@ -60,34 +60,57 @@ and open the template in the editor.
         <div id="onglets">
 
             <ul id="liste_onglets">
-                <li class="onglet onglet_actif">Lib1</li>
-                <li class="onglet">Lib2</li>
-                <li class="onglet">Lib3</li>
             </ul>
 
             <div id="contenus">
-                <div class="contenu contenu_actif">
-                    <h1>Mon titre 1</h1>
-                    <p>Contenu 1</p>
-                </div>
-                <div class="contenu">
-                    <h1>Mon titre 2</h1>
-                    <p>Contenu 2</p>
-                </div>
-                <div class="contenu">
-                    <h1>Mon titre 3</h1>
-                    <p>Contenu 3</p>
-                </div>
             </div>
 
         </div>
 
         <script>
+            var data = [
+                {
+                    lib: "Lib 1",
+                    titre: "Titre 1",
+                    contenu: "Contenu 1",
+                },
+                {
+                    lib: "Lib 2",
+                    titre: "Titre 2",
+                    contenu: "Contenu 2",
+                },
+                {
+                    lib: "Lib 3",
+                    titre: "Titre 3",
+                    contenu: "Contenu 3",
+                }
+            ];
+            
+            // on récupère les conteneurs dans des variables
+            var onglets = document.querySelector("#liste_onglets");
+            var contenus = document.querySelector("#contenus");
+            
+            // on boucle sur le tableau de données pour créer les élements
+            for (i=0; i<data.length; i++) {
+                var lib = document.createElement("li");
+                lib.classList.add("onglet");
+                lib.innerHTML = data[i].lib;
+                onglets.appendChild(lib);
+                
+                var contenu = document.createElement("div");
+                contenu.classList.add("contenu");
+                contenu.innerHTML = "<h1>"+data[i].titre+"</h1>";
+                contenu.innerHTML += "<p>"+data[i].contenu+"</p>";
+                contenus.appendChild(contenu);
+            }
+            
+            // on ajoute la méthode afficher() sur l'évènement click
             var lis = document.querySelectorAll("li.onglet");
             for (i=0; i<lis.length; i++) {
                 lis[i].setAttribute("onclick", "afficher(this);");
             }
 
+            // on déclare notre méthode afficher
             function afficher(li) {
                 var lis = document.querySelectorAll("li.onglet");
                 var contenus = document.querySelectorAll("div.contenu");
@@ -101,6 +124,9 @@ and open the template in the editor.
                     }
                 }
             }
+            
+            // on affiche le premier onglet
+            afficher(document.querySelector("li.onglet"));
         </script>
     </body>
 </html>
