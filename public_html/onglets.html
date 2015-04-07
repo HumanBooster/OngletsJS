@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Onglets</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            #onglets, #onglets ul, #contenus {
+                width: 400px;
+            }
+            
+            #onglets ul, #contenus  {
+                float: left;
+            }
+
+            #onglets ul {
+                padding: 0;
+                margin: 0;
+            }
+            
+            #onglets li.onglet {
+                list-style: none;
+                float: left;
+                border: 1px solid #ccc;
+                padding: 6px;
+                margin-left: 6px;
+                background: #bbb;
+            }
+            
+            #onglets li.onglet_actif {
+                background: #fff;
+                font-weight: bold;
+            }
+            
+            #contenus {
+                background: #ccc;
+                margin-top: -1px;
+            }
+            
+            #contenus .contenu {
+                padding: 6px;
+                display: none;
+            }
+            
+            #contenus .contenu_actif {
+                display: block;
+            }
+        </style>
+
+    </head>
+    <body>
+
+
+        <div id="onglets">
+
+            <ul id="liste_onglets">
+                <li class="onglet onglet_actif" onclick="afficher(this);">Lib1</li>
+                <li class="onglet" onclick="afficher(this);">Lib2</li>
+                <li class="onglet" onclick="afficher(this);">Lib3</li>
+            </ul>
+
+            <div id="contenus">
+                <div class="contenu contenu_actif">
+                    <h1>Mon titre 1</h1>
+                    <p>Contenu 1</p>
+                </div>
+                <div class="contenu">
+                    <h1>Mon titre 2</h1>
+                    <p>Contenu 2</p>
+                </div>
+                <div class="contenu">
+                    <h1>Mon titre 3</h1>
+                    <p>Contenu 3</p>
+                </div>
+            </div>
+
+        </div>
+
+        <script>
+
+            function afficher(li) {
+                var lis = document.querySelectorAll("li.onglet");
+                var contenus = document.querySelectorAll("div.contenu");
+                for (i=0; i<lis.length; i++) {
+                    if (lis[i]===li) {
+                        lis[i].classList.add("onglet_actif");
+                        contenus[i].classList.add("contenu_actif");
+                    } else {
+                        lis[i].classList.remove("onglet_actif");
+                        contenus[i].classList.remove("contenu_actif");
+                    }
+                }
+            }
+        </script>
+    </body>
+</html>
